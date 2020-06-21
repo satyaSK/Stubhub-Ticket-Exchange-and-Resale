@@ -1,0 +1,25 @@
+kubectl get services
+minikube services list
+minikube ip
+
+solve ingress-nginx no namespace found error using:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deplo
+y.yaml
+
+Dont forget to expose!!(Docker for windows)
+kubectl expose deployment/auth-depl --port 3000 --name auth-np --type NodePort
+after running the command "kubectl get services" gives
+>>3000:31149/TCP
+
+Now you can access the endpoint at: 192.168.99.101:31149
+
+add // @ts-ignore to suppress cookie session error
+
+Loadbalancer --> Nodeport --> ClusterIP
+
+thumbrule: do "minikube stop && minikube start" when in trouble
+
+To start up => 
+0)kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<SECRET>
+1)skaffold dev
+2)run expose wala command if no NodePort
